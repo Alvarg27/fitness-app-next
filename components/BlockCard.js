@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlus, FaPlusSquare } from "react-icons/fa";
-import exercises from "../data.js/excersies";
+import exercises from "../data.js/exercises";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseSearchBar from "./ExerciseSearchBar";
 import Toggle from "./Toggle";
@@ -12,22 +12,33 @@ const BlockCard = () => {
   const [title, setTitle] = useState("");
   const [titleOnFocus, setTitleOnFocus] = useState(false);
 
-  const handleAddExercise = (exercise) => {
+  const handleAddExercise = (exerciseId) => {
+    const result = exercises.find((ex) => ex._id === exerciseId);
+    const newObject = {
+      _id: blockLetter + (selectedExercises.length + 1),
+      title: result.title,
+      video: result.video,
+      poster: result.poster,
+    };
     const newArr = [...selectedExercises];
-    newArr.push(exercise);
+    newArr.push(newObject);
     setSelectedExercises(newArr);
   };
 
-  const handleRemoveExercise = (exerciseId) => {
-    const index = selectedExercises
-      .map(function (x) {
-        return x._id;
-      })
-      .indexOf(exerciseId);
+  console.log(selectedExercises);
+
+  const handleRemoveExercise = (index) => {
     const newArr = [...selectedExercises];
     newArr.splice(index, 1);
     setSelectedExercises(newArr);
   };
+
+  const handleAddExerciseOptions = (index, options) => {
+    const newArr = [...selectedExercises];
+    newArr[index].options = options;
+    setSelectedExercises(newArr);
+  };
+
   return (
     <div className="border-[3px] border-gray-300 rounded-xl m-2  p-4 flex flex-col">
       <div className="flex justify-between">
@@ -70,6 +81,7 @@ const BlockCard = () => {
             superset={superset}
             blockLetter="A"
             index={i}
+            handleAddExerciseOptions={handleAddExerciseOptions}
           />
         ))}
       </div>

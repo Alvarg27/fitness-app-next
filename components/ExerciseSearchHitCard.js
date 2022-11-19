@@ -7,7 +7,7 @@ const ExerciseSearchHitCard = ({ hit, handleAddExercise, setDropdownOpen }) => {
     <div
       onClick={() => {
         setDropdownOpen(false);
-        handleAddExercise(hit);
+        handleAddExercise(hit._id);
       }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
