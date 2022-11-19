@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <div className="flex justify-center flex-1 w-full">
+    <div className="flex flex-1">
       <NewWorkout />
     </div>
   );

@@ -48,16 +48,18 @@ const BlockCard = () => {
             className="bg-transparent"
           />
         </div>
-        <div className="my-auto flex">
-          <p
-            className={`text-sm mr-2 ${
-              superset ? "text-black" : "text-gray-500"
-            }`}
-          >
-            Superset
-          </p>
-          <Toggle enabled={superset} setEnabled={setSuperset} />
-        </div>
+        {selectedExercises.length >= 2 && (
+          <div className="my-auto flex">
+            <p
+              className={`text-sm mr-2 ${
+                superset ? "text-black" : "text-gray-500"
+              }`}
+            >
+              Superset
+            </p>
+            <Toggle enabled={superset} setEnabled={setSuperset} />
+          </div>
+        )}
       </div>
       <div>
         {selectedExercises.map((exercise, i) => (

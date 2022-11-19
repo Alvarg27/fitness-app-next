@@ -17,7 +17,7 @@ const ExerciseSearchHitCard = ({ hit, handleAddExercise, setDropdownOpen }) => {
         <Image
           src={hit.poster}
           fill={true}
-          className="object-cover rounded-lg"
+          className="object-cover rounded-lg bg-gray-100"
           alt=""
         />
       </div>
