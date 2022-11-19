@@ -2,7 +2,7 @@ import React from "react";
 import ExerciseVideo from "./ExerciseVideo";
 import { FaBeer, FaClock, FaDumbbell, FaReply, FaSync } from "react-icons/fa";
 
-const ExerciseCard = ({ exercise, superset, module, index }) => {
+const ExerciseCard = ({ exercise, superset, parent, index }) => {
   return (
     <div className="bg-white shadow-lg rounded-2xl my-1 flex relative">
       {superset && index === 0 && (
@@ -15,7 +15,7 @@ const ExerciseCard = ({ exercise, superset, module, index }) => {
       )}
       {superset && (
         <div className="bg-blue-500 min-h-full w-[40px] rounded-l-lg flex text-white">
-          <p className="m-auto">{module + (index + 1)}</p>
+          <p className="m-auto">{parent + (index + 1)}</p>
         </div>
       )}
 

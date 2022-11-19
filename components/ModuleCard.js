@@ -65,7 +65,7 @@ const ModuleCard = () => {
               exercise={exercise}
               index={i}
               superset={true}
-              module="B"
+              parent="B"
             />
           ))}
         </div>
