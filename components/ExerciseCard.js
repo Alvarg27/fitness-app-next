@@ -9,11 +9,18 @@ import {
   FaTrash,
 } from "react-icons/fa";
 
-const ExerciseCard = ({ exercise, superset, parent, index }) => {
+const ExerciseCard = ({
+  exercise,
+  superset,
+  parent,
+  index,
+  handleRemoveExercise,
+  blockLetter,
+}) => {
   return (
-    <div className="bg-white shadow-lg rounded-2xl my-1 flex relative ">
-      {superset && index === 0 && (
-        <div className="bg-blue-500 h-[40px] absolute px-4 left-1/2 -translate-x-1/2 -bottom-[25px] rounded-full z-10 flex text-white shadow-md">
+    <div className="bg-white shadow-md rounded-2xl my-1 flex relative ">
+      {superset && index !== 0 && (
+        <div className="bg-blue-500 h-[40px] absolute px-4 left-1/2 -translate-x-1/2 -top-[20px] rounded-full z-10 flex text-white shadow-md">
           <div className="flex">
             <FaSync className="my-auto mr-2" />
             <p className="my-auto">Superset</p>
@@ -22,7 +29,7 @@ const ExerciseCard = ({ exercise, superset, parent, index }) => {
       )}
       {superset && (
         <div className="bg-blue-500 min-h-full w-[40px] rounded-l-lg flex text-white">
-          <p className="m-auto">{parent + (index + 1)}</p>
+          <p className="m-auto">{blockLetter + (index + 1)}</p>
         </div>
       )}
 
@@ -54,7 +61,10 @@ const ExerciseCard = ({ exercise, superset, parent, index }) => {
             <p className="text-sm text-gray-500 mt-1">{exercise.note}</p>
           </div>
         </div>
-        <FaTrash className="my-auto text-gray-500 text-sm" />
+        <FaTrash
+          onClick={() => handleRemoveExercise(exercise._id)}
+          className="my-auto text-gray-500 text-sm cursor-pointer"
+        />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import ModuleCard from "./ModuleCard";
+import ModuleCard from "./BlockCard";
 
 const NewWorkout = () => {
   return (
