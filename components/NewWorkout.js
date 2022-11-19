@@ -3,7 +3,8 @@ import ModuleCard from "./ModuleCard";
 
 const NewWorkout = () => {
   return (
-    <div>
+    <div className="">
+      <p className="m-2 text-2xl">Morning session</p>
       <ModuleCard />
     </div>
   );

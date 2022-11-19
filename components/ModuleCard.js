@@ -1,4 +1,5 @@
 import React from "react";
+import { FaPlus, FaPlusSquare } from "react-icons/fa";
 import ExerciseCard from "./ExerciseCard";
 
 const ModuleCard = () => {
@@ -21,16 +22,22 @@ const ModuleCard = () => {
     { _id: "04", title: "Battle rope", video: "/rope.mp4", time: 20 },
   ];
   return (
-    <div className="bg-blue-100 border-[2px] border-blue-500 rounded-xl m-2  p-4 flex flex-col">
+    <div className="border-[3px] border-gray-300 rounded-xl m-2  p-4 flex flex-col">
       <div className="flex">
         <div className="bg-blue-500 flex w-[30px] h-[30px] rounded-full mr-2">
           <p className="m-auto text-white">A</p>
         </div>
-        <p className="my-auto">Module</p>
+        <p className="my-auto">Movilidad</p>
       </div>
-      {module.map((exercise, i) => (
-        <ExerciseCard key={i} exercise={exercise} />
-      ))}
+      <div>
+        {module.map((exercise, i) => (
+          <ExerciseCard key={i} exercise={exercise} />
+        ))}
+      </div>
+      <button className="flex bg-blue-500 text-white justify-center h-[50px] rounded-xl mt-4">
+        <FaPlus className="my-auto mr-2" />
+        <p className="my-auto">Add exercise</p>
+      </button>
     </div>
   );
 };

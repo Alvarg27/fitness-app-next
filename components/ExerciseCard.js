@@ -4,7 +4,7 @@ import { FaBeer, FaClock, FaDumbbell, FaReply, FaSync } from "react-icons/fa";
 
 const ExerciseCard = ({ exercise }) => {
   return (
-    <div className="bg-white shadow-lg rounded-xl m-2 p-4">
+    <div className="bg-white shadow-lg rounded-2xl my-1 p-2">
       <div className="flex">
         <ExerciseVideo video={exercise.video} />
         <div className="my-auto ml-4 ">
