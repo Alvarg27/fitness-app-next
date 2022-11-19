@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaAd, FaPlus, FaSearch } from "react-icons/fa";
 import exercises from "../data.js/excersies";
-import searchAlgorithm from "../helpers/SearchAlgorithm";
+import searchAlgorithm from "../helpers/searchAlgorithm";
 import ExerciseSearchHitCard from "./ExerciseSearchHitCard";
 
 const ExerciseSearchBar = ({ handleAddExercise }) => {
