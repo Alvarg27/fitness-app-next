@@ -1,9 +1,30 @@
 import React, { useState } from "react";
+import { FaPlus } from "react-icons/fa";
 import BlockCard from "./BlockCard";
 
 const NewWorkout = () => {
   const [title, setTitle] = useState("");
   const [titleOnFocus, setTitleOnFocus] = useState(false);
+  const [blocks, setBlocks] = useState([
+    {
+      _id: String.fromCharCode(96 + 1),
+      title: "",
+      setSelectedExercises: [],
+      superset: false,
+    },
+  ]);
+
+  const handleAddNewBlock = () => {
+    const newObj = {
+      _id: String.fromCharCode(96 + (blocks.length + 1)),
+      title: "",
+      setSelectedExercises: [],
+      superset: false,
+    };
+    const newArr = [...blocks];
+    newArr.push(newObj);
+    setBlocks(newArr);
+  };
   return (
     <div className="max-w-[600px] flex flex-1 flex-col">
       <input
@@ -18,7 +39,18 @@ const NewWorkout = () => {
         onChange={(e) => setTitle(e.target.value)}
         className="bg-transparent text-2xl p-4"
       />
-      <BlockCard />
+      {blocks.map((b, i) => (
+        <BlockCard key={i} block={b} />
+      ))}
+      <div className="w-full flex justify-center">
+        <button
+          onClick={handleAddNewBlock}
+          className="bg-blue-100 inline-flex justify-center items-center text-blue-500 px-8 rounded-lg py-2"
+        >
+          <FaPlus className="mr-2" />
+          <p>Add new block</p>
+        </button>
+      </div>
     </div>
   );
 };

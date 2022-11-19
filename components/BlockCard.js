@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { FaPlus, FaPlusSquare } from "react-icons/fa";
+import { FaPlus, FaPlusSquare, FaTrash } from "react-icons/fa";
 import exercises from "../data.js/exercises";
 import ExerciseCard from "./ExerciseCard";
 import ExerciseSearchBar from "./ExerciseSearchBar";
 import Toggle from "./Toggle";
 
-const BlockCard = () => {
-  const blockLetter = "A";
+const BlockCard = ({ block }) => {
+  const blockLetter = block._id.toUpperCase();
+
   const [superset, setSuperset] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [title, setTitle] = useState("");
@@ -61,7 +62,7 @@ const BlockCard = () => {
       <div className="flex justify-between">
         <div className="flex mb-2">
           <div className="bg-blue-500 flex w-[30px] h-[30px] rounded-full mr-2">
-            <p className="m-auto text-white">A</p>
+            <p className="m-auto text-white">{blockLetter}</p>
           </div>
           <input
             placeholder={placeholderTitle}
@@ -76,18 +77,20 @@ const BlockCard = () => {
             className="bg-transparent"
           />
         </div>
-        {selectedExercises.length >= 2 && (
-          <div className="my-auto flex">
-            <p
-              className={`text-sm mr-2 ${
-                superset ? "text-black" : "text-gray-500"
-              }`}
-            >
-              Superset
-            </p>
-            <Toggle enabled={superset} setEnabled={setSuperset} />
-          </div>
-        )}
+        <div>
+          {selectedExercises.length >= 2 && (
+            <div className="my-auto flex">
+              <p
+                className={`text-sm mr-2 ${
+                  superset ? "text-black" : "text-gray-500"
+                }`}
+              >
+                Superset
+              </p>
+              <Toggle enabled={superset} setEnabled={setSuperset} />
+            </div>
+          )}
+        </div>
       </div>
       <div>
         {selectedExercises.map((exercise, i) => (
