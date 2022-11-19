@@ -10,6 +10,9 @@ const BlockCard = () => {
   const [superset, setSuperset] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [title, setTitle] = useState("");
+  const [placeholderTitle, setPlaceholderTitle] = useState(
+    "Block title (optional)"
+  );
   const [titleOnFocus, setTitleOnFocus] = useState(false);
 
   const handleAddExercise = (exerciseId) => {
@@ -39,6 +42,20 @@ const BlockCard = () => {
     setSelectedExercises(newArr);
   };
 
+  useEffect(() => {
+    if (selectedExercises.length === 0) {
+      setPlaceholderTitle("Block title (optional)");
+    }
+    if (selectedExercises.length === 1) {
+      setPlaceholderTitle(selectedExercises[0].title + " block");
+    }
+    if (selectedExercises.length >= 2) {
+      setPlaceholderTitle("Circuit block");
+    }
+    if (selectedExercises.length >= 2 && superset) {
+      setPlaceholderTitle("Superset block");
+    }
+  }, [selectedExercises, superset]);
   return (
     <div className="border-[3px] border-gray-300 rounded-xl m-2  p-4 flex flex-col">
       <div className="flex justify-between">
@@ -47,7 +64,7 @@ const BlockCard = () => {
             <p className="m-auto text-white">A</p>
           </div>
           <input
-            placeholder="Block title (Optional)"
+            placeholder={placeholderTitle}
             onFocus={() => {
               setTitleOnFocus(true);
             }}
