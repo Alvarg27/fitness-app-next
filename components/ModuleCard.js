@@ -3,7 +3,7 @@ import { FaPlus, FaPlusSquare } from "react-icons/fa";
 import ExerciseCard from "./ExerciseCard";
 
 const ModuleCard = () => {
-  const module = [
+  const modules = [
     { _id: "01", title: "Row", video: "/row.mp4", time: 20 },
     {
       _id: "02",
@@ -21,7 +21,7 @@ const ModuleCard = () => {
     },
     { _id: "04", title: "Battle rope", video: "/rope.mp4", time: 20 },
   ];
-  const module2 = [
+  const modules2 = [
     {
       _id: "02",
       title: "Box jump",
@@ -42,7 +42,7 @@ const ModuleCard = () => {
           <p className="my-auto">Movilidad</p>
         </div>
         <div>
-          {module.map((exercise, i) => (
+          {modules.map((exercise, i) => (
             <ExerciseCard key={i} exercise={exercise} />
           ))}
         </div>
@@ -59,7 +59,7 @@ const ModuleCard = () => {
           <p className="my-auto">Fuerza</p>
         </div>
         <div>
-          {module2.map((exercise, i) => (
+          {modules2.map((exercise, i) => (
             <ExerciseCard
               key={i}
               exercise={exercise}
