@@ -49,16 +49,16 @@ const ExerciseModalInput = ({
             value={value}
             onChange={(e) => setValue(e.target.value)}
             maxLength={8}
-            className="text-indigo-500 bg-transparent w-[70px]"
+            className="text-blue-500 bg-transparent w-[70px]"
             placeholder={placeholder}
           />
         </div>
       </div>
       <div
         onClick={() => setValue("")}
-        className="my-auto px-2 py-1 hover:bg-gray-200 rounded-md"
+        className="my-auto px-2 py-1 transition duration-300 text-gray-500 hover:bg-gray-200 hover:text-rose-400 rounded-md"
       >
-        <p className="text-sm m-auto text-blue-500">Reset</p>
+        <p className="text-sm m-auto">Reset</p>
       </div>
     </div>
   );
