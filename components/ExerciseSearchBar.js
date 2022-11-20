@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaAd, FaPlus, FaSearch } from "react-icons/fa";
-import exercises from "../data.js/exercises";
+
 import searchAlgorithm from "../helpers/searchAlgorithm";
 import ExerciseSearchHitCard from "./ExerciseSearchHitCard";
+import exercises from "../exercises.json";
 
 const ExerciseSearchBar = ({ handleAddExercise }) => {
   const [dropdownHovered, setDropdownHovered] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [inputOnFocus, setInputOnFocus] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [hits, setHits] = useState(exercises);
+  const [hits, setHits] = useState([]);
   const inputRef = useRef(null);
 
   useEffect(() => {
     if (searchInput.length < 1) {
-      setHits(exercises);
+      setHits([]);
       return;
     }
     const result = searchAlgorithm(searchInput, exercises);
@@ -74,7 +75,7 @@ const ExerciseSearchBar = ({ handleAddExercise }) => {
         <div
           onMouseOver={() => setDropdownHovered(true)}
           onMouseOut={() => setDropdownHovered(false)}
-          className="bg-white w-full absolute rounded-xl shadow-md top-8 z-[11]"
+          className="bg-white w-full absolute rounded-xl shadow-md top-8 z-[11] max-h-[300px] overflow-scroll"
         >
           {hits.map((hit, i) => (
             <ExerciseSearchHitCard
@@ -84,7 +85,7 @@ const ExerciseSearchBar = ({ handleAddExercise }) => {
               setDropdownOpen={setDropdownOpen}
             />
           ))}
-          {hits.length < 1 && (
+          {hits.length < 1 && searchInput !== "" && (
             <div className="p-2 h-[50px] flex text-gray-500">
               <FaSearch className="my-auto mr-2" />
               <p className="my-auto">No results found</p>

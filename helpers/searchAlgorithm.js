@@ -54,7 +54,7 @@ const searchAlgorithm = (searchInput, array) => {
   const searchWordArr = searchString.filter((word) => word !== "");
   array.map((element) => {
     searchWordArr.map((sw) => {
-      let targetWords = element.title;
+      let targetWords = element.name;
       targetWords.split(" ").map((ptw) => {
         if (ptw.startsWith(sw) || similarity(ptw, sw) > 0.6) {
           if (newArr.find((p) => p._id === element._id)) {

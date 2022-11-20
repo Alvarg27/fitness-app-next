@@ -32,6 +32,12 @@ const NewWorkout = () => {
     setBlocks(newArr);
   };
 
+  const handleAddBlockOptions = (index, options) => {
+    const newArr = [...blocks];
+    newArr[index].options = options;
+    setBlocks(newArr);
+  };
+
   return (
     <div className="max-w-[600px] flex flex-1 flex-col pb-8">
       <input
@@ -52,6 +58,8 @@ const NewWorkout = () => {
           block={b}
           handleRemoveBlock={handleRemoveBlock}
           blocks={blocks}
+          index={i}
+          handleAddBlockOptions={handleAddBlockOptions}
         />
       ))}
       <div className="w-full flex justify-center">

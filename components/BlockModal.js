@@ -1,26 +1,35 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { FaClock, FaDumbbell, FaStopwatch, FaSync } from "react-icons/fa";
+
 import ExerciseModalInput from "./ExerciseModalInput";
 
 export default function BlockModal({
   isOpen,
   setIsOpen,
-  exerciseId,
-  handleAddExerciseOptions,
+  handleAddBlockOptions,
   index,
 }) {
   const [rounds, setRounds] = useState(1);
   const [time, setTime] = useState(0);
   const [roundTime, setRoundTime] = useState(0);
   const [restTime, setRestTime] = useState(0);
+  const [notes, setNotes] = useState("");
 
-  const [notes, setNotes] = useState(0);
+  const options = {
+    rounds,
+    time,
+    roundTime,
+    restTime,
+    notes,
+  };
+
   function closeModal() {
     setIsOpen(false);
   }
 
   const handleSave = () => {
+    handleAddBlockOptions(index, options);
+    setIsOpen(false);
     return;
   };
 

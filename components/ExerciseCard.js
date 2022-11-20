@@ -34,7 +34,9 @@ const ExerciseCard = ({
       />
       <div
         onClick={() => setIsOpen(true)}
-        className="bg-white shadow-md rounded-2xl my-1 flex relative cursor-pointer"
+        className={`border-b-[1px] my-1 flex relative cursor-pointer ${
+          index === 0 ? "border-t-[1px]" : ""
+        }`}
       >
         {superset && index !== 0 && (
           <div className="bg-blue-500 h-[40px] absolute px-4 left-1/2 -translate-x-1/2 -top-[20px] rounded-full z-10 flex text-white shadow-md">
@@ -52,9 +54,16 @@ const ExerciseCard = ({
 
         <div className="flex  p-2 flex-1 justify-between">
           <div className="flex">
-            <ExerciseVideo video={exercise.video} poster={exercise.poster} />
+            {exercise.video && (
+              <ExerciseVideo video={exercise.video} poster={exercise.poster} />
+            )}
+            {!exercise.video && (
+              <div className="bg-gray-100 w-[80px] h-[100px] rounded-lg flex">
+                <FaDumbbell className="m-auto text-4xl text-gray-300" />
+              </div>
+            )}
             <div className="my-auto ml-4 ">
-              <p className="font-medium">{exercise.title}</p>
+              <p className="font-medium">{exercise.name}</p>
               {exercise?.options?.reps > 0 &&
                 exercise?.options?.sets > 0 &&
                 exercise?.options?.time > 0 &&
