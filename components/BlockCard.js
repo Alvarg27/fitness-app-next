@@ -57,7 +57,7 @@ const BlockCard = ({
       setPlaceholderTitle("Block title (optional)");
     }
     if (selectedExercises.length === 1) {
-      setPlaceholderTitle(selectedExercises[0].title + " block");
+      setPlaceholderTitle(selectedExercises[0].name + " block");
     }
     if (selectedExercises.length >= 2) {
       setPlaceholderTitle("Circuit block");

@@ -13333,6 +13333,8 @@
   },
   {
     "name": "Rope Jumping",
+    "video": "/jumping-rope.mp4",
+    "poster": "/jumping-rope.jpg",
     "force": null,
     "level": "intermediate",
     "mechanic": null,
@@ -13393,6 +13395,8 @@
   },
   {
     "name": "Rowing, Stationary",
+    "video": "row.mp4",
+    "poster": "row-poster.jpg",
     "force": null,
     "level": "intermediate",
     "mechanic": null,
