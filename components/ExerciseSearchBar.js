@@ -28,7 +28,6 @@ const ExerciseSearchBar = ({ handleAddExercise }) => {
 
   const handleBlur = () => {
     setInputOnFocus(false);
-    setSearchInput("");
   };
 
   useEffect(() => {
@@ -75,10 +74,11 @@ const ExerciseSearchBar = ({ handleAddExercise }) => {
         <div
           onMouseOver={() => setDropdownHovered(true)}
           onMouseOut={() => setDropdownHovered(false)}
-          className="bg-white w-full absolute rounded-xl shadow-md top-8 z-[11] max-h-[300px] overflow-scroll"
+          className="bg-gray-100 w-full absolute rounded-xl shadow-md top-8 z-[11] max-h-[300px] overflow-scroll"
         >
           {hits.map((hit, i) => (
             <ExerciseSearchHitCard
+              setSearchInput={setSearchInput}
               hit={hit}
               key={i}
               handleAddExercise={handleAddExercise}
