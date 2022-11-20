@@ -13395,8 +13395,8 @@
   },
   {
     "name": "Rowing, Stationary",
-    "video": "row.mp4",
-    "poster": "row-poster.jpg",
+    "video": "/row.mp4",
+    "poster": "/row-poster.jpg",
     "force": null,
     "level": "intermediate",
     "mechanic": null,
