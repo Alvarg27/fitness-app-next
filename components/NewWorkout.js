@@ -25,8 +25,15 @@ const NewWorkout = () => {
     newArr.push(newObj);
     setBlocks(newArr);
   };
+
+  const handleRemoveBlock = (index) => {
+    const newArr = [...blocks];
+    newArr.splice(index, 1);
+    setBlocks(newArr);
+  };
+
   return (
-    <div className="max-w-[600px] flex flex-1 flex-col">
+    <div className="max-w-[600px] flex flex-1 flex-col pb-8">
       <input
         placeholder="Workout title (Optional)"
         onFocus={() => {
@@ -40,7 +47,12 @@ const NewWorkout = () => {
         className="bg-transparent text-2xl p-4"
       />
       {blocks.map((b, i) => (
-        <BlockCard key={i} block={b} />
+        <BlockCard
+          key={i}
+          block={b}
+          handleRemoveBlock={handleRemoveBlock}
+          blocks={blocks}
+        />
       ))}
       <div className="w-full flex justify-center">
         <button

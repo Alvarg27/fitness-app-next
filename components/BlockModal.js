@@ -3,33 +3,25 @@ import { Fragment, useEffect, useState } from "react";
 import { FaClock, FaDumbbell, FaStopwatch, FaSync } from "react-icons/fa";
 import ExerciseModalInput from "./ExerciseModalInput";
 
-export default function ExerciseModal({
+export default function BlockModal({
   isOpen,
   setIsOpen,
   exerciseId,
   handleAddExerciseOptions,
   index,
 }) {
-  const [reps, setReps] = useState(0);
-  const [sets, setSets] = useState(0);
+  const [rounds, setRounds] = useState(1);
   const [time, setTime] = useState(0);
-  const [rest, setRest] = useState(0);
-  const [pace, setPace] = useState(100);
-  const [notes, setNotes] = useState("");
+  const [roundTime, setRoundTime] = useState(0);
+  const [restTime, setRestTime] = useState(0);
+
+  const [notes, setNotes] = useState(0);
   function closeModal() {
     setIsOpen(false);
   }
 
   const handleSave = () => {
-    handleAddExerciseOptions(index, {
-      reps,
-      sets,
-      time,
-      rest,
-      pace,
-      notes,
-    });
-    closeModal();
+    return;
   };
 
   return (
@@ -63,60 +55,46 @@ export default function ExerciseModal({
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Fine tune the exercise
+                  Fine tune the block
                 </Dialog.Title>
                 <div className="mt-2"></div>
-
                 <ExerciseModalInput
-                  label="Reps"
-                  icon="FaDumbbell"
-                  color="emerald"
-                  value={reps}
-                  setValue={setReps}
-                  type="number"
-                />
-
-                <ExerciseModalInput
-                  label="Sets"
-                  icon="FaSync"
-                  color="blue"
-                  value={sets}
-                  setValue={setSets}
-                  type="number"
-                />
-
-                <ExerciseModalInput
-                  label="Exercise timecap"
+                  label="Block timecap"
                   icon="FaStopwatch"
                   color="indigo"
                   value={time}
                   setValue={setTime}
                   type="time"
                 />
-
                 <ExerciseModalInput
-                  label="Exercise rest"
+                  label="Rounds"
+                  icon="FaSync"
+                  color="emerald"
+                  value={rounds}
+                  setValue={setRounds}
+                  placeholder="1"
+                  type="number"
+                />
+                <ExerciseModalInput
+                  label="Round timecap"
                   icon="FaStopwatch"
-                  color="amber"
-                  value={rest}
-                  setValue={setRest}
+                  color="emerald"
+                  value={roundTime}
+                  setValue={setRoundTime}
                   type="time"
                 />
-
                 <ExerciseModalInput
-                  label="Pace"
-                  icon="FaPercentage"
-                  color="blue"
-                  value={pace}
-                  setValue={setPace}
-                  type="number"
-                  percentage={true}
-                  placeholder="100"
+                  label="Rest between rounds"
+                  icon="FaStopwatch"
+                  color="emerald"
+                  value={restTime}
+                  setValue={setRestTime}
+                  type="time"
                 />
 
                 <div>
                   <label className="text-sm font-medium my-auto">
-                    Extra notes
+                    Block notes
                   </label>
                   <textarea
                     value={notes}
