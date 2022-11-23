@@ -48,29 +48,84 @@ const normalizeString = (str) => {
 };
 
 const searchAlgorithm = (searchInput, array) => {
-  const newArr = [];
-  const searchString =
-    searchInput.length >= 1 ? normalizeString(searchInput).split(" ") : [];
-  const searchWordArr = searchString.filter((word) => word !== "");
-  array.map((element) => {
-    searchWordArr.map((sw) => {
-      let targetWords = element.name;
-      targetWords.split(" ").map((ptw) => {
-        if (ptw.startsWith(sw)) {
-          if (newArr.find((p) => p._id === element._id)) {
-            return;
-          }
-          newArr.push(element);
+  if (searchInput.length < 1) {
+    return [];
+  }
+  let newArr = [];
+
+  let searchWordArr = [];
+  if (searchInput.length >= 1) {
+    // create array from words
+    searchWordArr = normalizeString(searchInput)
+      .split(" ")
+      .filter((word) => word !== "");
+  }
+
+  array.forEach((element) => {
+    const matchingWords = [];
+    const targetWordsArr = normalizeString(element.name)
+      .split(" ")
+      .filter((word) => word !== "");
+
+    searchWordArr.forEach((searchWord, si) => {
+      targetWordsArr.forEach((targetWord, ti) => {
+        const indexMatch = si === ti;
+        if (targetWord.startsWith(searchWord)) {
+          matchingWords.push({
+            word: targetWord,
+            similarity: searchWord.length / targetWord.length,
+            indexMatch: indexMatch === true ? 1 : 0,
+          });
+          return;
         }
-        if (similarity(ptw, sw) > 0.9) {
-          if (newArr.find((p) => p._id === element._id)) {
-            return;
-          }
-          newArr.push(element);
+        const wordsSimilarity = similarity(targetWord, searchWord);
+        if (wordsSimilarity > 0.7) {
+          matchingWords.push({
+            word: targetWord,
+            similarity: wordsSimilarity,
+            indexMatch: indexMatch === true ? 1 : 0,
+          });
+          return;
         }
       });
     });
+
+    if (
+      matchingWords.length < 1 ||
+      searchWordArr.length < 1 ||
+      targetWordsArr.length < 1
+    ) {
+      return;
+    }
+
+    const wordCoincidence =
+      matchingWords.reduce((partialSum, a) => partialSum + a.similarity, 0) /
+      searchWordArr.length;
+
+    const lengthCoincidence = searchWordArr.length / targetWordsArr.length / 2;
+
+    const indexCoincidence =
+      matchingWords.reduce((partialSum, a) => partialSum + a.indexMatch, 0) /
+      searchWordArr.length /
+      2;
+
+    if (newArr.find((el) => el._id === element._id)) {
+      return;
+    }
+
+    newArr.push({
+      ...element,
+      wordCoincidence,
+      lengthCoincidence,
+      indexCoincidence,
+    });
   });
+
+  newArr = newArr.sort(
+    (a, b) =>
+      parseFloat(b.lengthCoincidence + b.indexCoincidence + b.wordCoincidence) -
+      parseFloat(a.lengthCoincidence + a.indexCoincidence + a.wordCoincidence)
+  );
 
   return newArr;
 };
