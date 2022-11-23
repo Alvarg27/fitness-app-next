@@ -51,15 +51,17 @@ const ExerciseSearchHitCard = ({
         >
           {hit.category}
         </p>
-        <p
-          className={`inline-flex h-auto my-auto px-2 py-1 text-xs rounded-lg justify-center items-center ${
-            hit.force === "push"
-              ? "bg-indigo-100 text-indigo-500"
-              : "bg-blue-100 text-blue-500"
-          }`}
-        >
-          {hit.force}
-        </p>
+        {hit.force && (
+          <p
+            className={`inline-flex h-auto my-auto px-2 py-1 text-xs rounded-lg justify-center items-center ${
+              hit.force === "push"
+                ? "bg-indigo-100 text-indigo-500"
+                : "bg-blue-100 text-blue-500"
+            }`}
+          >
+            {hit.force}
+          </p>
+        )}
       </div>
     </div>
   );
